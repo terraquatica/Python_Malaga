@@ -1,0 +1,33 @@
+def balanced_brackets(my_string: str):
+    lstring="()[]"
+    rstring="()[]"
+    if len(my_string) ==0:
+        return True
+  if my_string[0] in lstring and my_string[-1] in rstring:
+        if my_string[0] == "(" and my_string[-1] != ")":
+            print("difieren")
+            return False
+        if my_string[0] == "[" and my_string[-1] != "]":
+            print("difieren")
+            return False
+        return balanced_brackets(my_string[1:-1])
+            
+    if not my_string[0] in lstring and not my_string[-1] in rstring:
+        print("solo texto",my_string)
+        return balanced_brackets(my_string[1:-1])
+            
+    if not my_string[-1] in rstring and my_string[0] in lstring:
+        print("quito la letra derecha de: ", my_string)
+        if len(my_string)<=2:
+            return False
+        return balanced_brackets(my_string[:-1])
+   
+    if not (my_string[0]) in lstring and my_string[-1] in rstring:
+        print("quito la letra izqu de: ", my_string)
+        if len(my_string)<=2:
+            return False
+        return balanced_brackets(my_string[1:])
+    
+    print("ok:",my_string)
+    # remove first and last character
+    return balanced_brackets(my_string[1:-1]) #esto "quita" el primer y último carácter de la cadena
